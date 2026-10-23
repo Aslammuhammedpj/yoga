@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evenora - Contact Form</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+ <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+  
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Draggable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/EaselPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Flip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/GSDevTools.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/InertiaPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MotionPathHelper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MotionPathPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MorphSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Observer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Physics2DPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/PhysicsPropsPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/PixiPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrambleTextPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+<!-- ScrollSmoother requires ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/TextPlugin.min.js"></script>
+
+<!-- RoughEase, ExpoScaleEase and SlowMo are all included in the EasePack file -->    
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/EasePack.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/CustomEase.min.js"></script>
+<!-- CustomBounce requires CustomEase -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/CustomBounce.min.js"></script>
+<!-- CustomWiggle requires CustomEase -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/CustomWiggle.min.js"></script>
+<style>
+
+    
+
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        z-index: 0;
+    
+       
+    }
+    header {
+    position: relative;
+    z-index: 1;
+    margin: none;
+}
+
+    .contact-form {
+        position: relative;
+        z-index: 1;
+       transition: width 3s, height 3s;
+    }
+ .contact-form:hover{
+    box-shadow: 2px 2px 3px 1px gray;
+ }
+ .contact-info{
+    position: relative;
+    z-index: 1;
+ }
+ .contact-info{
+         position: relative;
+        z-index: 1;
+       transition: width 3s, height 3s;
+ }
+ .contact-info:hover{
+     box-shadow: 2px 2px 3px 1px gray;
+
+ }
+ /* Tablet */
+@media screen and (max-width: 1024px) {
+    .contact-info {
+        padding: 20px;
+    }
+
+    .contact-form {
+        max-width: 600px;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .contact-info {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .contact-info h3 {
+        font-size: 18px;
+    }
+
+    .contact-info p {
+        font-size: 14px;
+        overflow-wrap: anywhere;
+    }
+
+    .contact-form {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .contact-form h1 {
+        font-size: 28px;
+    }
+
+    .contact-form p {
+        font-size: 14px;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+    }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 480px) {
+    .contact-info {
+        padding: 12px;
+    }
+
+    .contact-info h3 {
+        font-size: 16px;
+    }
+
+    .contact-form {
+        padding: 16px;
+    }
+
+    .contact-form h1 {
+        font-size: 24px;
+    }
+
+    .contact-form button {
+        padding: 10px;
+    }
+}
+
+    
+
+</style>
+
+</head>
+
+
+<body class="min-h-screen bg-purple-50  bg-purple-100 ">
+  
+
+    <canvas></canvas>
+      <header class="bg-white flex justify-between items-center px-5 py-2 border-b border-gray-300">
+
+    <div class="flex items-center">
+       <img src="https://tse1.mm.bing.net/th/id/OIP.fN0NISc9a51VaR8vY96XrgHaGC?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" width="50px" alt="Evenora Logo">
+
+        <h1 class="text-fuchsia-900 text-2xl px-3 font-semibold">
+            Evenora
+        </h1>
+    </div>
+
+    <ul class="flex items-center gap-6">
+        <li class="text-fuchsia-900 hover:text-pink-600 hover:underline">
+            <a href="#Home">Home</a>
+        </li>
+        <li class="text-fuchsia-900 hover:text-pink-600 hover:underline">
+            <a href="#Register">Register</a>
+        </li>
+        <li class="text-fuchsia-900 hover:text-pink-600 hover:underline">
+            <a href="#Services">Services</a>
+        </li>
+        <li class="text-fuchsia-900 hover:text-pink-600 hover:underline">
+            <a href="#Contact">Contact</a>
+        </li>
+    </ul>
+
+  <button class="text-fuchsia-900 px-10 py-2 me-5 shadow rounded-full border">
+    Login
+</button>
+
+</header>
+7594053782
+   <section class="w-full max-w-5xl mx-auto mt-10">
+    
+    <h2 class="text-3xl text-purple-900  text-center relative z-10">
+        Contact Information
+    </h2>
+
+    <div class="gap-5 flex flex-wrap items-center justify-center my-10 px-2">
+
+        <div class="contact-info  px-10 py-7 bg-white rounded-xl shadow-md border border-purple-100 text-center scale-95 hover:scale-100 ">
+            <h3 class="text-xl font-semibold text-purple-800 mb-3">
+                Company Address
+            </h3>
+            <p class="text-gray-600">
+                Evenora Events<br>
+                Thrissur, Kerala, India
+            </p>
+        </div>
+
+        <div class="contact-info  px-10 py-7 bg-white rounded-xl shadow-md border border-purple-100 text-center scale-95 hover:scale-100 ">
+            <h3 class="text-xl font-semibold text-purple-800 mb-3">
+                Email
+            </h3>
+            <p class="text-gray-600">
+              company - info@evenora.com
+            </p>
+            <p class="text-gray-600">
+                  manager - jhonmathew@gmail.com
+            </p>
+        </div>
+
+        <div class="contact-info px-10 py-7 bg-white rounded-xl shadow-md border border-purple-100 text-center  scale-95 hover:scale-100 ">
+            <h3 class="text-xl font-semibold text-purple-800 mb-3">
+                Phone Number
+            </h3>
+            <p class="text-gray-600">
+               +91 98765 43210
+            </p>
+            <p class="text-gray-600">
+            (calling time morning 10 to evening 7)
+            </p>
+        </div>
+
+    </div>
+</section>
+   <section class="my-10 mx-auto contact-form w-full max-w-lg bg-white p-5 sm:p-8 md:p-10 rounded-2xl shadow-xl border border-purple-100">
+        <h1 class="text-3xl md:text-4xl font-bold text-purple-900 text-center mb-3">
+            Contact Us
+        </h1>
+
+        <p class="text-gray-600 text-center mb-8">
+            Let's make your event unforgettable!
+        </p>
+
+        <form action="">
+            <div>
+                <label for="name" class="block text-gray-800 font-medium mb-2">
+                    Name
+                </label>
+                <input type="text" id="name" name="name"
+                    placeholder="Enter your name" required
+                    class="w-full border border-purple-200 rounded-lg px-4 py-3 outline-none mb-5">
+            </div>
+
+            <div>
+                <label for="email" class="block text-gray-800 font-medium mb-2">
+                    Email
+                </label>
+                <input type="email" id="email" name="email"
+                    placeholder="Enter your email" required
+                    class="w-full border border-purple-200 rounded-lg px-4 py-3 outline-none mb-5">
+            </div>
+
+            <div>
+                <label for="message" class="block text-gray-800 font-medium mb-2">
+                    Message
+                </label>
+                <textarea id="message" name="message" rows="4"
+                    placeholder="Tell us about your event..." required
+                    class="w-full border border-purple-200 rounded-lg px-4 py-3 outline-none resize-none mb-5"></textarea>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-purple-800 text-white font-semibold py-3 rounded-lg hover:bg-purple-950 transition duration-300">
+                Send Message
+            </button>
+        </form>
+    </section>
+
+ <script>
+ // use a script tag or an external JS file
+ document.addEventListener("DOMContentLoaded", (event) => {
+  gsap.registerPlugin(Draggable,DrawSVGPlugin,EaselPlugin,Flip,GSDevTools,InertiaPlugin,MotionPathHelper,MotionPathPlugin,MorphSVGPlugin,Observer,Physics2DPlugin,PhysicsPropsPlugin,PixiPlugin,ScrambleTextPlugin,ScrollTrigger,ScrollSmoother,ScrollToPlugin,SplitText,TextPlugin,RoughEase,ExpoScaleEase,SlowMo,CustomEase,CustomBounce,CustomWiggle)
+  // gsap code here!
+  const c = document.querySelector("canvas");
+const ctx = c.getContext("2d");
+let cw = (c.width = window.innerWidth);
+let ch = (c.height = window.innerHeight);
+let radius = Math.max(cw,ch);
+const particles = Array(99);
+
+for (let i = 0; i < particles.length; i++) {
+  particles[i] = {
+    x: 0,
+    y: 0,
+    scale: 0, 
+    rotate: 0,
+    img: new Image()
+  }  
+  particles[i].img.src = "https://assets.codepen.io/16327/flair-"+(2+i%21)+".png";
+}
+
+const tl = gsap.timeline({onUpdate:draw})
+  .fromTo(particles, {
+    x:(i)=> {
+      const angle = (i/particles.length * Math.PI *2)- Math.PI/2
+      return Math.cos(angle*10) * radius// * i/particles.length
+    },
+    y:(i)=> {
+      const angle = (i/particles.length * Math.PI *2)- Math.PI/2
+      return Math.sin(angle*10) * radius// * i/particles.length
+    },
+    scale: 1.1,
+    rotate: 0
+  },{
+    duration: 5,
+    ease: "sine",
+    x: 0,
+    y: 0,
+    scale: 0,
+    rotate: -3,
+    stagger:{each:-0.05, repeat:-1}
+  }, 0)
+  .seek(99)
+
+function draw(){  
+  particles.sort( (a,b) => a.scale - b.scale ) // sort by scale to set z-indexing  
+  ctx.clearRect(0, 0, cw, ch);
+  particles.forEach((p, i) => {
+    ctx.translate(cw / 2, ch / 2);
+    ctx.rotate( p.rotate );
+    ctx.drawImage(
+      p.img,
+      p.x,
+      p.y,
+      p.img.width * p.scale,
+      p.img.height * p.scale
+    );
+    ctx.resetTransform();
+  });
+}
+
+window.addEventListener("resize", () => {
+  cw = c.width = innerWidth;
+  ch = c.height = innerHeight;
+  radius = Math.max(cw,ch);
+  tl.invalidate();
+});
+
+c.addEventListener('pointerup', ()=>{ 
+  gsap.to(tl, { 
+    timeScale: tl.isActive() ? 0 : 1 // use timeScale to toggle play / pause
+  })
+})
+
+  
+ });
+
+</script>
+
+</script>
+
+</body>
+</html>
